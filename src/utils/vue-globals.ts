@@ -1,9 +1,10 @@
-import Tracking from "./tracking";
+import { MIDIConnect } from "../domain/MIDIConnect";
+import EventBus from "./event-bus";
 
 export default {
 
-	install(Vue) {
-
-		Vue.prototype.$tracking = new Tracking();
+	async install(Vue) {
+		Vue.prototype.$MIDIConnect = new MIDIConnect;
+		EventBus.$emit('MIDIConnectReady', Vue.prototype.$MIDIConnect);
 	}
 };

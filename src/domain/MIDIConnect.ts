@@ -1,14 +1,13 @@
 import { MIDIType } from '../enums/midi-type';
-import { IMIDIDevice } from '../interfaces/midi-device.interface';
+import { IMIDIDevices } from '../interfaces/midi-device.interface';
 import { IMIDIConnect } from '../interfaces/midi-connect.interface';
-import { IMIDIInput } from '../interfaces/midi-input.interface';
 import { IMIDIDataInput } from '../interfaces/midi-data-input.interface';
 
 export class MIDIConnect implements IMIDIConnect {
 
     _audioContext!: AudioContext | null;
     _MIDIAccess!: any;
-    _devices: IMIDIDevice;
+    _devices: IMIDIDevices;
 
     constructor() {
 
@@ -19,7 +18,7 @@ export class MIDIConnect implements IMIDIConnect {
         this._audioContext = this.getAudioContext();
     }
 
-    public get devices(): IMIDIDevice {
+    public get devices(): IMIDIDevices {
         return this._devices;
     }
 

@@ -10,7 +10,6 @@ module.exports = mode => {
 		entry: './src/main.ts',
 		output: {
 			filename: 'bundle.js',
-			publicPath: '/dist/',
 			path: path.resolve(__dirname, 'dist'),
 		},
 		mode: 'development',

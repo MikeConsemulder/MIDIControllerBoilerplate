@@ -1,8 +1,10 @@
 import Vue from "vue";
 import App from "./App.vue";
 import { store } from "./store/store";
+import vueGlobals from "./utils/vue-globals";
 
 Vue.config.productionTip = false;
+Vue.use(vueGlobals);
 
 const app = Vue.extend({
 	store,
