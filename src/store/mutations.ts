@@ -30,10 +30,10 @@ const mutations = {
             device.unique_input_ids.push(message.id);
         }
 
-        if(device.messages.length === 6) {
+        if(device.messages.length === state.maxAmountIncommingMessages + 1) {
             device.messages.shift();
         }
-        
+
         state.input_messages = stateCopy.input_messages;
     }
 };

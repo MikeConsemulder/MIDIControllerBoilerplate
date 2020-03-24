@@ -5,7 +5,8 @@ const state: IState = {
         inputs: [],
         outputs: []
     },
-    input_messages: []
+    input_messages: [],
+    maxAmountIncommingMessages: 100
 };
 
 export { state };

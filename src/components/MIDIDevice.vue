@@ -63,5 +63,8 @@ export default class MIDIDevice extends Vue {
         padding: 0.5rem;
         margin: 1rem 0 2rem 0;
         box-sizing: border-box;
+
+        max-height: 10rem;
+        overflow-y: scroll;
     }
 </style>
