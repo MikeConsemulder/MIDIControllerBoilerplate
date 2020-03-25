@@ -6,7 +6,7 @@ const actions = {
     },
     processMessage({ commit, state, dispatch }, { id, message }): void {
         
-          const device = state.input_messages.filter(device => {
+        const device = state.input_messages.filter(device => {
             return device.id === id;
         })[0];
 

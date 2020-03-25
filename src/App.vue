@@ -21,7 +21,11 @@ export default class App extends Vue {
 }
 </script>
 <style scoped lang="scss">
+	
 	#visual {
+
+
+
 		width: 100%;
 		height: 100vh;
 	}

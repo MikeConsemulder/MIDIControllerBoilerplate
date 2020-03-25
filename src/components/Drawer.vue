@@ -4,6 +4,7 @@
         id="drawer"
     >
         Settings
+        <InputConfig/>
   </div>
 </template>
 
@@ -11,8 +12,13 @@
 import Vue from "vue";
 import { Component } from "vue-property-decorator";
 import { IMIDIInput } from "../interfaces/midi-input.interface";
+import InputConfig from "./InputConfig.vue";
 
-@Component
+@Component({
+    components: {
+        InputConfig
+    }
+})
 export default class Drawer extends Vue {
 
     private isOpen: boolean = true;
@@ -50,8 +56,9 @@ export default class Drawer extends Vue {
 }
 </script>
 <style scoped lang="scss">
+    @import '../styling/colours.scss';
     #drawer {
-        z-index: 1000;
+        z-index: 10;
         position: fixed;
         
         padding: 2rem;
@@ -62,10 +69,12 @@ export default class Drawer extends Vue {
         transform: translateX(-100%);
         top: 0;
 
-        background-color: white;
+        background-color: #ffffff;
+        color: $Neutral;
 
         box-shadow: 0 4px 8px 0 rgba(63,92,110, 0.5);
 
+        overflow-y: scroll;
 
         animation-name: outgoing;
         
