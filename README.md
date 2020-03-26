@@ -1,5 +1,5 @@
-# MIDIControllerBoilerplate
-A boilerplate for controlling a webpage with a MIDIController / (vue, webpack, typescript)
+# MIDIWebpageController
+A plug and play application for controlling a webpage with a MIDIController / (vue, webpack, typescript)
 
 Still WIP
 
