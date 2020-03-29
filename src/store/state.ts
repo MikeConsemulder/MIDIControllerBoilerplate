@@ -7,17 +7,8 @@ const state: IState = {
     },
     input_messages: [],
     maxAmountIncommingMessages: 100,
-    actions: {
-        action_1: {
-            activators: []
-        },
-        action_2: {
-            activators: []
-        },
-        action_3: {
-            activators: []
-        }
-    }
+    actions: ['action1', 'action2', 'action3'],
+    actionActivators: {}
 };
 
 export { state };

@@ -5,5 +5,6 @@ export interface IState {
     devices: IMIDIDevices,
     input_messages: IInputMessage[],
     maxAmountIncommingMessages: number,
-    actions: any
+    actions: string[],
+    actionActivators: any
 }

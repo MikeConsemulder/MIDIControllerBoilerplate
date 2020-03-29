@@ -26,7 +26,6 @@ export default class Drawer extends Vue {
     private elementClone: any = null;
     
     private dragstart(e): void {
-        console.log('wow');
         EventBus.$emit('setDraggedElement', this.$refs.DragableElement);
     }
 

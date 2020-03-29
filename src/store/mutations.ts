@@ -22,19 +22,37 @@ const mutations = {
             return device.id === id;
         })[0];
 
-        if(typeof device === 'undefined') return;
+        if (typeof device === 'undefined') return;
 
         device.messages.push(message);
 
-        if(!device.unique_input_ids.includes(message.id)) { 
+        if (!device.unique_input_ids.includes(message.id)) {
             device.unique_input_ids.push(message.id);
         }
 
-        if(device.messages.length === state.maxAmountIncommingMessages + 1) {
+        if (device.messages.length === state.maxAmountIncommingMessages + 1) {
             device.messages.shift();
         }
 
         state.input_messages = stateCopy.input_messages;
+    },
+    setActionActivator(state: IState, { action, deviceId, inputId }): void {
+
+        const combinedId = `${deviceId}_${inputId}`;
+        let stateCopy: IState = { ...state };
+
+        if (!stateCopy.actionActivators.hasOwnProperty(combinedId)) {
+            Object.defineProperty(stateCopy.actionActivators, combinedId, {
+                value: [],
+                writable: true,
+                enumerable: true
+            });
+        }
+
+        if(stateCopy.actionActivators[combinedId].includes(action)) return;
+        stateCopy.actionActivators[combinedId].push(action);
+
+        state.actionActivators = stateCopy.actionActivators;
     }
 };
 

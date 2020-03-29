@@ -33,7 +33,13 @@ const getters = {
         if (device === null || typeof device === 'undefined') return null;
         return device.unique_input_ids;
     },
-    actions: (state: IState) => state.actions
+    actions: (state: IState) => state.actions,
+    actionActivators: (state: IState) => state.actionActivators,
+    isActivator: (state: IState) => ({ action, deviceId, inputId }): boolean => {
+
+        if(!state.actionActivators.hasOwnProperty(`${deviceId}_${inputId}`)) return false;
+        return state.actionActivators[`${deviceId}_${inputId}`].includes(action);
+    }
 };
 
 export { getters };
