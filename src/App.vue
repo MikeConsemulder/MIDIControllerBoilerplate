@@ -24,8 +24,6 @@ export default class App extends Vue {
 	
 	#visual {
 
-
-
 		width: 100%;
 		height: 100vh;
 	}

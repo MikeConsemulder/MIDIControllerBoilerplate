@@ -6,7 +6,18 @@ const state: IState = {
         outputs: []
     },
     input_messages: [],
-    maxAmountIncommingMessages: 100
+    maxAmountIncommingMessages: 100,
+    actions: {
+        action_1: {
+            activators: []
+        },
+        action_2: {
+            activators: []
+        },
+        action_3: {
+            activators: []
+        }
+    }
 };
 
 export { state };

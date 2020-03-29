@@ -65,9 +65,13 @@ export default class MIDIDevice extends Vue {
         this.subscribeToMessages();
     }
 
-    subscribeToMessages(): void {
+    subscribeToMessages(): void { 
         
         this['$MIDIConnect'].subscribeToMessage(this.id, (message: IMIDIDataInput) => {  
+
+            //filter out the noise (probably the MIDIClock tick) TODO: process it into a clock signal
+            if(message.id === null || typeof message.id === 'undefined') return;
+            
             this.setReceivingTimeout();
             this.$store.dispatch('processMessage', {
                 id: this.id,

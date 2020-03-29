@@ -4,6 +4,8 @@ const VueLoaderPlugin = require('vue-loader').VueLoaderPlugin;
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const config = require('./config');
 
+console.log(path.resolve(__dirname, '../dist'));
+
 module.exports = mode => {
 
 	return merge([{

@@ -32,7 +32,8 @@ const getters = {
         })[0];
         if (device === null || typeof device === 'undefined') return null;
         return device.unique_input_ids;
-    }
+    },
+    actions: (state: IState) => state.actions
 };
 
 export { getters };

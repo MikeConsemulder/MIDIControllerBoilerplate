@@ -1,10 +1,10 @@
 <template>
-    <div 
+    <Draggable 
         @click="openInputConfig"
         class="MIDIInput"
     >
         {{ id }}
-    </div>
+    </Draggable>
 </template>
 
 <script lang="ts">
@@ -12,8 +12,13 @@ import Vue from "vue";
 import { Component, Prop } from "vue-property-decorator";
 import { IMIDIInput } from "../interfaces/midi-input.interface";
 import EventBus from "../utils/event-bus";
+import Draggable from "./Draggable.vue";
 
-@Component
+@Component({
+    components: {
+        Draggable
+    }
+})
 export default class MIDIInput extends Vue {
 
     @Prop({ default: null }) id!: number | null;
@@ -33,7 +38,7 @@ export default class MIDIInput extends Vue {
     }
 
     private openInputConfig(): void {
-
+        
         EventBus.$emit('OpenInputConfig', {
             input_id: this.id,
             device_id: this.deviceId

@@ -24,14 +24,14 @@ import EventBus from "../utils/event-bus";
 @Component
 export default class InputConfig extends Vue {
 
-    private isVisible: boolean = true;
+    private isVisible: boolean = false;
     private inputId: number | null = null;
     private deviceId: string | null = null;
 
     mounted(): void {
 
         EventBus.$on('OpenInputConfig', (data: any)=> {
-            
+            return;
             this.isVisible = true;
             this.inputId = data.input_id;
             this.deviceId = data.device_id;

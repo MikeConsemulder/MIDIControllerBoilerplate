@@ -3,6 +3,7 @@
         :class="{ 'is-Open' : isOpen }"
         id="drawer"
     >
+        <ActionsConfig/>
         Settings
         <InputConfig/>
   </div>
@@ -13,9 +14,11 @@ import Vue from "vue";
 import { Component } from "vue-property-decorator";
 import { IMIDIInput } from "../interfaces/midi-input.interface";
 import InputConfig from "./InputConfig.vue";
+import ActionsConfig from "./ActionsConfig.vue";
 
 @Component({
     components: {
+        ActionsConfig,
         InputConfig
     }
 })
