@@ -1,6 +1,5 @@
 <template>
     <Draggable 
-        @click="openInputConfig"
         class="MIDIInput"
         :data-device-id="deviceId"
         :data-id="id"
@@ -37,14 +36,6 @@ export default class MIDIInput extends Vue {
             parent = parent.$parent
         }
         return component.id;
-    }
-
-    private openInputConfig(): void {
-
-        EventBus.$emit('OpenInputConfig', {
-            input_id: this.id,
-            device_id: this.deviceId
-        });
     }
 }
 </script>

@@ -24,12 +24,18 @@ import EventBus from "../utils/event-bus";
 export default class Drawer extends Vue {
 
     private elementClone: any = null;
+    private isDragged: boolean = false;
     
     private dragstart(e): void {
+
+        e.dataTransfer.setData("text/plain", e.target.id);
+        e.dataTransfer.dropEffect = "copy";
+
         EventBus.$emit('setDraggedElement', this.$refs.DragableElement);
     }
 
     private dragEnd(): void {
+
         EventBus.$emit('setDraggedElement', null);
     }
 }
@@ -47,11 +53,17 @@ export default class Drawer extends Vue {
         }
 
         &:hover {
-            box-shadow: 0 4px 8px 0 rgba(63,92,110, 0.13);
+            box-shadow: 0 4px 8px 0 rgba(63,92,110, 0.8);
+            cursor: move!important; /* fallback if grab cursor is unsupported */
+            cursor: grab!important;
+            cursor: -moz-grab!important;
+            cursor: -webkit-grab!important;
         }
 
         &:active {
-            cursor: pointer;
+            cursor: grabbing!important;
+            cursor: -moz-grabbing!important;
+            cursor: -webkit-grabbing!important;
         }
     }
 </style>

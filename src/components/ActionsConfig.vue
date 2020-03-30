@@ -5,7 +5,8 @@
         <div 
             v-for="(action, key) in actions"
             :key="key"
-            @dragleave="dragLeave({ key }, $event)" 
+            @dragover="dragover"
+            v-on:drop="ondrop({ key }, $event)"
             class="Action"
         >
             {{ action }}        
@@ -28,6 +29,7 @@ import EventBus from "../utils/event-bus";
 export default class ActionsConfig extends Vue {
 
     private draggedElement: any = null;
+    private dragOver: boolean = false;
     
     get inputMessages(): any {
         return this.$store.getters.inputMessages('input-0');
@@ -48,10 +50,13 @@ export default class ActionsConfig extends Vue {
         });
     }
 
-    private dragLeave(data, event): void {
+    private dragover(e): void {
+        e.preventDefault();
+        e.dataTransfer.dropEffect = "move";
+    }
 
-        if(!this.isDrop(event)) return;
-
+    private ondrop(data, event): void {
+        event.preventDefault();
 
         const action: any = this.$refs[data.key][0];
         if(action === null || this.draggedElement === null) return;
@@ -82,11 +87,14 @@ export default class ActionsConfig extends Vue {
             deviceId: this.draggedElement.dataset.deviceId, 
             inputId: this.draggedElement.dataset.id
         })) return;
-       
-        action.insertBefore(
+
+        const node = action.insertBefore(
             this.draggedElement.cloneNode(true),
             action.querySelector('.InputPlaceholder')
         );
+        
+        node.classList.remove('Dragable');
+        node.setAttribute('draggable',false);
     }
 }
 </script>

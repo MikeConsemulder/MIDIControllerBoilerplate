@@ -4,7 +4,6 @@
         id="drawer"
     >
         <ActionsConfig/>
-        <InputConfig/>
   </div>
 </template>
 
@@ -12,18 +11,16 @@
 import Vue from "vue";
 import { Component } from "vue-property-decorator";
 import { IMIDIInput } from "../interfaces/midi-input.interface";
-import InputConfig from "./InputConfig.vue";
 import ActionsConfig from "./ActionsConfig.vue";
 
 @Component({
     components: {
-        ActionsConfig,
-        InputConfig
+        ActionsConfig
     }
 })
 export default class Drawer extends Vue {
 
-    private isOpen: boolean = true;
+    private isOpen: boolean = false;
     
     mounted(): void {
 
@@ -38,7 +35,7 @@ export default class Drawer extends Vue {
 
         document.addEventListener("keydown", (event: KeyboardEvent) => {
 
-            if (event.isComposing || event.keyCode === 82) {
+            if (event.isComposing || event.keyCode === 192) {
                 this.isOpen = !this.isOpen
                 return;
             }
@@ -67,8 +64,9 @@ export default class Drawer extends Vue {
         
         width: 20rem;
         height: 100vh;
-        
-        transform: translateX(-100%);
+        box-sizing: border-box;
+
+        left: -20rem;
         top: 0;
 
         background-color: #ffffff;
@@ -76,29 +74,12 @@ export default class Drawer extends Vue {
 
         box-shadow: 0 4px 8px 0 rgba(63,92,110, 0.5);
 
-        overflow-y: scroll;
-
-        animation-name: outgoing;
-        
-        animation-timing-function: ease-in-out;
-        animation-duration: 0.5s;            
+        overflow-y: scroll;       
+        transition: left .5s cubic-bezier(0.8, 0.08, 0.4, 0.9);
         
         &.is-Open {
                     
-        animation-timing-function: ease-in-out;
-        animation-duration: 0.5s;     
-        animation-name: incomming;  
-        transform: translateX(0);
+            left: 0; 
         }
-    }
-
-    @keyframes incomming {
-        from { transform: translateX(-100%) }
-        to { transform: translateX(0) }
-    }
-
-    @keyframes outgoing {
-        from { transform: translateX(0) }
-        to { transform: translateX(-100%) }
     }
 </style>
