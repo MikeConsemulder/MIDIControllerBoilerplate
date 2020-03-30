@@ -10,6 +10,7 @@ const actions = {
             return device.id === id;
         })[0];
 
+        dispatch('broadcastMessage', { id, message });
 
         if (device === null || typeof device === 'undefined') {
             commit('saveNewMessage', { id, message });
@@ -18,8 +19,25 @@ const actions = {
 
         commit('saveMessage', { id, message });
     },
-    setActionActivator({state, commit, getters }, { action, deviceId, inputId }): void {
+    setActionActivator({ state, commit, getters }, { action, deviceId, inputId }): void {
         commit('setActionActivator', { action, deviceId, inputId });
+    },
+    broadcastMessage({ getters }, { id, message }): void {
+
+        getters.actions.forEach((action, actionKey) => {
+
+            if (getters.isActivator({
+                action: actionKey,
+                deviceId: id,
+                inputId: message.id
+            })) {
+                document.dispatchEvent(new CustomEvent(action, {
+                    detail: {
+                        message
+                    }
+                }));
+            }
+        })
     }
 };
 

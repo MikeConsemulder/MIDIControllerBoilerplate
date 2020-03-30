@@ -4,7 +4,6 @@
         id="drawer"
     >
         <ActionsConfig/>
-        Settings
         <InputConfig/>
   </div>
 </template>

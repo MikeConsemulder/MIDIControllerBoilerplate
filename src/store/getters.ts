@@ -37,8 +37,9 @@ const getters = {
     actionActivators: (state: IState) => state.actionActivators,
     isActivator: (state: IState) => ({ action, deviceId, inputId }): boolean => {
 
-        if(!state.actionActivators.hasOwnProperty(`${deviceId}_${inputId}`)) return false;
-        return state.actionActivators[`${deviceId}_${inputId}`].includes(action);
+        if (!state.actionActivators.hasOwnProperty(deviceId)) return false;
+        if (!state.actionActivators[deviceId].hasOwnProperty(inputId)) return false;
+        return state.actionActivators[deviceId][inputId].includes(action);
     }
 };
 
