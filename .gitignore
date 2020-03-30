@@ -8,8 +8,6 @@ deploy/
 screenshots/
 videos/
 stats.json
-index.html
-linkedin.html
 
 # Editor directories and files
 .idea
